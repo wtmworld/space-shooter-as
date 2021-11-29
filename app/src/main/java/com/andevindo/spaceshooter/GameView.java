@@ -24,6 +24,9 @@ import java.util.Random;
 
 public class GameView extends SurfaceView implements Runnable {
 
+    public static int SCORE = 0;
+    public static int METEOR_DESTROYED = 0;
+    public static int ENEMY_DESTROYED = 0;
     private Thread mGameThread;
     private volatile boolean mIsPlaying;
     private Player mPlayer;
@@ -38,9 +41,6 @@ public class GameView extends SurfaceView implements Runnable {
     private int mCounter = 0;
     private SoundPlayer mSoundPlayer;
     private SharedPreferencesManager mSP;
-    public static int SCORE = 0;
-    public static int METEOR_DESTROYED = 0;
-    public static int ENEMY_DESTROYED = 0;
     private volatile boolean mIsGameOver;
     private volatile boolean mNewHighScore;
 
