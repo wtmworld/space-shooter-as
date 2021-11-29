@@ -1,14 +1,14 @@
 package com.andevindo.spaceshooter;
 
+import static com.andevindo.spaceshooter.GameView.ENEMY_DESTROYED;
+import static com.andevindo.spaceshooter.GameView.SCORE;
+
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Rect;
 
 import java.util.Random;
-
-import static com.andevindo.spaceshooter.GameView.ENEMY_DESTROYED;
-import static com.andevindo.spaceshooter.GameView.SCORE;
 
 /**
  * Created on   : 8/12/2017
@@ -43,7 +43,7 @@ public class Enemy {
         mEnemies = new int[]{R.drawable.enemy_red_1, R.drawable.enemy_red_2, R.drawable.enemy_red_3};
         Random random = new Random();
         mBitmap = BitmapFactory.decodeResource(context.getResources(), mEnemies[random.nextInt(3)]);
-        mBitmap = Bitmap.createScaledBitmap(mBitmap, mBitmap.getWidth() * 3/5, mBitmap.getHeight() * 3/5, false);
+        mBitmap = Bitmap.createScaledBitmap(mBitmap, mBitmap.getWidth() * 3 / 5, mBitmap.getHeight() * 3 / 5, false);
 
         mSpeed = random.nextInt(3) + 1;
 
@@ -53,27 +53,27 @@ public class Enemy {
         mX = random.nextInt(mMaxX);
         mY = 0 - mBitmap.getHeight();
 
-        if (mX<mMaxX){
+        if (mX < mMaxX) {
             mIsTurnRight = true;
-        }else{
+        } else {
             mIsTurnRight = false;
         }
 
         mCollision = new Rect(mX, mY, mX + mBitmap.getWidth(), mY + mBitmap.getHeight());
     }
 
-    public void update(){
+    public void update() {
         mY += 7 * mSpeed;
 
-        if (mX<=0){
+        if (mX <= 0) {
             mIsTurnRight = true;
-        }else if (mX>=mScreenSizeX-mBitmap.getWidth()){
+        } else if (mX >= mScreenSizeX - mBitmap.getWidth()) {
             mIsTurnRight = false;
         }
 
-        if (mIsTurnRight){
+        if (mIsTurnRight) {
             mX += 7 * mSpeed;
-        }else{
+        } else {
             mX -= 7 * mSpeed;
         }
 
@@ -87,17 +87,17 @@ public class Enemy {
         return mCollision;
     }
 
-    public void hit(){
-        if (--mHP ==0){
+    public void hit() {
+        if (--mHP == 0) {
             SCORE += 50;
             ENEMY_DESTROYED++;
             destroy();
-        }else{
+        } else {
             mSoundPlayer.playExplode();
         }
     }
 
-    public void destroy(){
+    public void destroy() {
         mY = mScreenSizeY + 1;
         mSoundPlayer.playCrash();
     }

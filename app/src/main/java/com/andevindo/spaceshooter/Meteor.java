@@ -1,15 +1,14 @@
 package com.andevindo.spaceshooter;
 
+import static com.andevindo.spaceshooter.GameView.METEOR_DESTROYED;
+import static com.andevindo.spaceshooter.GameView.SCORE;
+
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.graphics.Matrix;
 import android.graphics.Rect;
 
 import java.util.Random;
-
-import static com.andevindo.spaceshooter.GameView.METEOR_DESTROYED;
-import static com.andevindo.spaceshooter.GameView.SCORE;
 
 /**
  * Created on   : 8/11/2017
@@ -35,13 +34,13 @@ public class Meteor {
     private int mHP;
     private SoundPlayer mSoundPlayer;
 
-    public Meteor(Context context, int screenSizeX, int screenSizeY, SoundPlayer soundPlayer){
+    public Meteor(Context context, int screenSizeX, int screenSizeY, SoundPlayer soundPlayer) {
         mScreenSizeX = screenSizeX;
         mScreenSizeY = screenSizeY;
         mSoundPlayer = soundPlayer;
 
         mBitmap = BitmapFactory.decodeResource(context.getResources(), R.drawable.meteor_1);
-        mBitmap = Bitmap.createScaledBitmap(mBitmap, mBitmap.getWidth() * 3/5, mBitmap.getHeight() * 3/5, false);
+        mBitmap = Bitmap.createScaledBitmap(mBitmap, mBitmap.getWidth() * 3 / 5, mBitmap.getHeight() * 3 / 5, false);
 
         mMaxX = screenSizeX - mBitmap.getWidth();
         mMaxY = screenSizeY - mBitmap.getHeight();
@@ -58,7 +57,7 @@ public class Meteor {
         mCollision = new Rect(mX, mY, mX + mBitmap.getWidth(), mY + mBitmap.getHeight());
     }
 
-    public void update(){
+    public void update() {
         mY += 7 * mSpeed;
 
         mCollision.left = mX;
@@ -71,17 +70,17 @@ public class Meteor {
         return mCollision;
     }
 
-    public void hit(){
-        if (--mHP ==0){
+    public void hit() {
+        if (--mHP == 0) {
             SCORE += 20;
             METEOR_DESTROYED++;
             destroy();
-        }else{
+        } else {
             mSoundPlayer.playExplode();
         }
     }
 
-    public void destroy(){
+    public void destroy() {
         mY = mScreenSizeY + 1;
         mSoundPlayer.playCrash();
     }

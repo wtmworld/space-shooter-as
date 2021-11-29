@@ -22,7 +22,7 @@ public class SoundPlayer implements Runnable {
     private int mExplodeId, mLaserId, mCrashId;
     private boolean mIsLaserPlaying, mIsExplodePlaying, mIsCrashPlaying;
 
-    public SoundPlayer(Context context){
+    public SoundPlayer(Context context) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             AudioAttributes attributes = new AudioAttributes.Builder()
                     .setUsage(AudioAttributes.USAGE_GAME)
@@ -42,37 +42,37 @@ public class SoundPlayer implements Runnable {
 
     @Override
     public void run() {
-        while (mIsPlaying){
-            if (mIsLaserPlaying){
+        while (mIsPlaying) {
+            if (mIsLaserPlaying) {
                 mSoundPool.play(mLaserId, 1, 1, 1, 0, 1f);
                 mIsLaserPlaying = false;
             }
 
-            if (mIsExplodePlaying){
+            if (mIsExplodePlaying) {
                 mSoundPool.play(mExplodeId, 1, 1, 1, 0, 1);
                 mIsExplodePlaying = false;
             }
 
-            if (mIsCrashPlaying){
+            if (mIsCrashPlaying) {
                 mSoundPool.play(mCrashId, 1, 1, 1, 0, 1);
                 mIsCrashPlaying = false;
             }
         }
     }
 
-    public void playCrash(){
+    public void playCrash() {
         mIsCrashPlaying = true;
     }
 
-    public void playLaser(){
+    public void playLaser() {
         mIsLaserPlaying = true;
     }
 
-    public void playExplode(){
+    public void playExplode() {
         mIsExplodePlaying = true;
     }
 
-    public void resume(){
+    public void resume() {
         mIsPlaying = true;
         mSoundThread = new Thread(this);
         mSoundThread.start();

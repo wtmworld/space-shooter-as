@@ -4,7 +4,6 @@ import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Rect;
-import android.util.Log;
 
 import java.util.ArrayList;
 
@@ -42,14 +41,14 @@ public class Player {
 
         mSpeed = 1;
         mBitmap = BitmapFactory.decodeResource(context.getResources(), R.drawable.spaceship_1_blue);
-        mBitmap = Bitmap.createScaledBitmap(mBitmap, mBitmap.getWidth() * 3/5, mBitmap.getHeight() * 3/5, false);
+        mBitmap = Bitmap.createScaledBitmap(mBitmap, mBitmap.getWidth() * 3 / 5, mBitmap.getHeight() * 3 / 5, false);
 
         mMaxX = screenSizeX - mBitmap.getWidth();
         mMaxY = screenSizeY - mBitmap.getHeight();
         mMinX = 0;
         mMinY = 0;
 
-        mX = screenSizeX/2 - mBitmap.getWidth()/2;
+        mX = screenSizeX / 2 - mBitmap.getWidth() / 2;
         mY = screenSizeY - mBitmap.getHeight() - mMargin;
 
         mLasers = new ArrayList<>();
@@ -58,15 +57,15 @@ public class Player {
         mCollision = new Rect(mX, mY, mX + mBitmap.getWidth(), mY + mBitmap.getHeight());
     }
 
-    public void update(){
-        if (mIsSteerLeft){
+    public void update() {
+        if (mIsSteerLeft) {
             mX -= 10 * mSteerSpeed;
-            if (mX<mMinX){
+            if (mX < mMinX) {
                 mX = mMinX;
             }
-        }else if (mIsSteerRight){
+        } else if (mIsSteerRight) {
             mX += 10 * mSteerSpeed;
-            if (mX>mMaxX){
+            if (mX > mMaxX) {
                 mX = mMaxX;
             }
         }
@@ -98,7 +97,7 @@ public class Player {
         return mLasers;
     }
 
-    public void fire(){
+    public void fire() {
         mLasers.add(new Laser(mContext, mScreenSizeX, mScreenSizeY, mX, mY, mBitmap, false));
         mSoundPlayer.playLaser();
     }
@@ -107,19 +106,19 @@ public class Player {
         return mCollision;
     }
 
-    public void steerRight(float speed){
+    public void steerRight(float speed) {
         mIsSteerLeft = false;
         mIsSteerRight = true;
         mSteerSpeed = Math.abs(speed);
     }
 
-    public void steerLeft(float speed){
+    public void steerLeft(float speed) {
         mIsSteerRight = false;
         mIsSteerLeft = true;
         mSteerSpeed = Math.abs(speed);
     }
 
-    public void stay(){
+    public void stay() {
         mIsSteerLeft = false;
         mIsSteerRight = false;
         mSteerSpeed = 0;

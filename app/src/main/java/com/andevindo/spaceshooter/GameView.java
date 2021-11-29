@@ -96,7 +96,7 @@ public class GameView extends SurfaceView implements Runnable {
             if (Rect.intersects(m.getCollision(), mPlayer.getCollision())) {
                 m.destroy();
                 mIsGameOver = true;
-                if (SCORE>mSP.getHighScore()){
+                if (SCORE > mSP.getHighScore()) {
                     mNewHighScore = true;
                     mSP.saveHighScore(SCORE, METEOR_DESTROYED, ENEMY_DESTROYED);
                 }
@@ -131,7 +131,7 @@ public class GameView extends SurfaceView implements Runnable {
             if (Rect.intersects(e.getCollision(), mPlayer.getCollision())) {
                 e.destroy();
                 mIsGameOver = true;
-                if (SCORE>=mSP.getHighScore()){
+                if (SCORE >= mSP.getHighScore()) {
                     mSP.saveHighScore(SCORE, METEOR_DESTROYED, ENEMY_DESTROYED);
                 }
             }
@@ -228,7 +228,7 @@ public class GameView extends SurfaceView implements Runnable {
         highScore.setTextSize(50);
         highScore.setTextAlign(Paint.Align.CENTER);
         highScore.setColor(Color.WHITE);
-        if (mNewHighScore){
+        if (mNewHighScore) {
             mCanvas.drawText("New High Score : " + mSP.getHighScore(), mScreenSizeX / 2, (mScreenSizeY / 2) + 60, highScore);
             Paint enemyDestroyed = new Paint();
             enemyDestroyed.setTextSize(50);
@@ -290,7 +290,7 @@ public class GameView extends SurfaceView implements Runnable {
     public boolean onTouchEvent(MotionEvent event) {
         switch (event.getAction()) {
             case MotionEvent.ACTION_DOWN:
-                if (mIsGameOver){
+                if (mIsGameOver) {
                     ((Activity) getContext()).finish();
                     getContext().startActivity(new Intent(getContext(), MainMenuActivity.class));
                 }

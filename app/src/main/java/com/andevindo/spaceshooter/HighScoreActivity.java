@@ -1,7 +1,7 @@
 package com.andevindo.spaceshooter;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -29,15 +29,15 @@ public class HighScoreActivity extends AppCompatActivity implements View.OnClick
         loadHighScore();
     }
 
-    void loadHighScore(){
+    void loadHighScore() {
         SharedPreferencesManager spm = new SharedPreferencesManager(this);
-        if (spm.getHighScore()!=-1){
+        if (spm.getHighScore() != -1) {
             mNullHighScore.setVisibility(TextView.GONE);
             mHighScoreContainer.setVisibility(LinearLayout.VISIBLE);
             mScore.setText(spm.getHighScore() + "");
             mMeteor.setText(spm.getMeteorDestroyed() + "");
             mEnemy.setText(spm.getEnemyDestroyed() + "");
-        }else{
+        } else {
             mNullHighScore.setVisibility(TextView.VISIBLE);
             mHighScoreContainer.setVisibility(LinearLayout.GONE);
         }
@@ -45,7 +45,7 @@ public class HighScoreActivity extends AppCompatActivity implements View.OnClick
 
     @Override
     public void onClick(View v) {
-        switch (v.getId()){
+        switch (v.getId()) {
             case R.id.back:
                 finish();
                 break;

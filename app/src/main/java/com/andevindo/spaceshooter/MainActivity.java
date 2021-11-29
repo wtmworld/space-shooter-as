@@ -1,19 +1,18 @@
 package com.andevindo.spaceshooter;
 
 import android.content.Context;
-import android.graphics.Paint;
 import android.graphics.Point;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.Display;
 import android.view.WindowManager;
 
-public class MainActivity extends AppCompatActivity implements SensorEventListener{
+public class MainActivity extends AppCompatActivity implements SensorEventListener {
 
     private GameView mGameView;
     private float mXTemp;
@@ -58,12 +57,11 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
     public void onSensorChanged(SensorEvent event) {
         mXTemp = event.values[0];
 
-        if (event.values[0] > 1){
+        if (event.values[0] > 1) {
             mGameView.steerLeft(event.values[0]);
-        }
-        else if (event.values[0] < -1){
+        } else if (event.values[0] < -1) {
             mGameView.steerRight(event.values[0]);
-        }else{
+        } else {
             mGameView.stay();
         }
     }
