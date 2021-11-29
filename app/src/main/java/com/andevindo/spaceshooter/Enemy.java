@@ -24,6 +24,7 @@ public class Enemy {
     private Rect mCollision;
     private int mScreenSizeX;
     private int mScreenSizeY;
+    private int mLevel;
     private int mEnemies[];
     private int mMaxX;
     private int mMaxY;
@@ -32,9 +33,14 @@ public class Enemy {
     private boolean mIsTurnRight;
     private SoundPlayer mSoundPlayer;
 
-    public Enemy(Context context, int screenSizeX, int screenSizeY, SoundPlayer soundPlayer) {
+    public Enemy(Context context,
+                 int screenSizeX,
+                 int screenSizeY,
+                 int level,
+                 SoundPlayer soundPlayer) {
         mScreenSizeX = screenSizeX;
         mScreenSizeY = screenSizeY;
+        mLevel = level;
         mSoundPlayer = soundPlayer;
 
         mHP = 5;
@@ -56,13 +62,25 @@ public class Enemy {
                 false
         );
 
-        mSpeed = random.nextInt(3) + 1;
+        int maxSpeed;
+        switch (mLevel) {
+            case 1:
+                maxSpeed = 2;
+                break;
+            case 2:
+                maxSpeed = 3;
+                break;
+            default:
+                maxSpeed = 4;
+                break;
+        }
+        mSpeed = random.nextInt(maxSpeed) + 1;
 
         mMaxX = screenSizeX - mBitmap.getWidth();
         mMaxY = screenSizeY - mBitmap.getHeight();
 
         mX = random.nextInt(mMaxX);
-        mY = 0 - mBitmap.getHeight();
+        mY = -mBitmap.getHeight();
 
         if (mX < mMaxX) {
             mIsTurnRight = true;

@@ -198,7 +198,8 @@ public class GameView extends SurfaceView implements Runnable {
             }
         }
         if (mCounter % enemyInterval == 0) {
-            mEnemies.add(new Enemy(getContext(), mScreenSizeX, mScreenSizeY, mSoundPlayer));
+            Enemy enemy = new Enemy(getContext(), mScreenSizeX, mScreenSizeY, mLevel, mSoundPlayer);
+            mEnemies.add(enemy);
         }
 
         for (Star s : mStars) {
