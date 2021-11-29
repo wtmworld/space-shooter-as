@@ -30,16 +30,27 @@ public class Meteor {
     private Rect mCollision;
     private int mScreenSizeX;
     private int mScreenSizeY;
+    private int mLevel;
     private int mHP;
     private SoundPlayer mSoundPlayer;
 
-    public Meteor(Context context, int screenSizeX, int screenSizeY, SoundPlayer soundPlayer) {
+    public Meteor(Context context,
+                  int screenSizeX,
+                  int screenSizeY,
+                  int level,
+                  SoundPlayer soundPlayer) {
         mScreenSizeX = screenSizeX;
         mScreenSizeY = screenSizeY;
+        mLevel = level;
         mSoundPlayer = soundPlayer;
 
         mBitmap = BitmapFactory.decodeResource(context.getResources(), R.drawable.meteor_1);
-        mBitmap = Bitmap.createScaledBitmap(mBitmap, mBitmap.getWidth() * 3 / 5, mBitmap.getHeight() * 3 / 5, false);
+        mBitmap = Bitmap.createScaledBitmap(
+                mBitmap,
+                mBitmap.getWidth() * 3 / 5,
+                mBitmap.getHeight() * 3 / 5,
+                false
+        );
 
         mMaxX = screenSizeX - mBitmap.getWidth();
         mMaxY = screenSizeY - mBitmap.getHeight();
@@ -47,8 +58,20 @@ public class Meteor {
         mMinY = 0;
         mHP = 3;
 
+        int maxSpeed;
+        switch (mLevel) {
+            case 1:
+                maxSpeed = 3;
+                break;
+            case 2:
+                maxSpeed = 4;
+                break;
+            default:
+                maxSpeed = 5;
+                break;
+        }
         Random random = new Random();
-        mSpeed = random.nextInt(3) + 1;
+        mSpeed = random.nextInt(maxSpeed) + 1;
 
         mX = random.nextInt(mMaxX);
         mY = -mBitmap.getHeight();

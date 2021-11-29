@@ -158,7 +158,14 @@ public class GameView extends SurfaceView implements Runnable {
             }
         }
         if (mCounter % meteorInterval == 0) {
-            mMeteors.add(new Meteor(getContext(), mScreenSizeX, mScreenSizeY, mSoundPlayer));
+            Meteor meteor = new Meteor(
+                    getContext(),
+                    mScreenSizeX,
+                    mScreenSizeY,
+                    mLevel,
+                    mSoundPlayer
+            );
+            mMeteors.add(meteor);
         }
 
         for (Enemy e : mEnemies) {
