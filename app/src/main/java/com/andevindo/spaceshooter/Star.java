@@ -14,7 +14,6 @@ import java.util.Random;
  */
 
 public class Star {
-
     private Bitmap mBitmap;
     private int mX;
     private int mY;
@@ -31,7 +30,12 @@ public class Star {
         Random random = new Random();
         mBitmap = BitmapFactory.decodeResource(context.getResources(), mStars[random.nextInt(3)]);
         float scale = (float) (random.nextInt(3) + 1) / 5;
-        mBitmap = Bitmap.createScaledBitmap(mBitmap, (int) (mBitmap.getWidth() * scale), (int) (mBitmap.getHeight() * scale), false);
+        mBitmap = Bitmap.createScaledBitmap(
+                mBitmap,
+                (int) (mBitmap.getWidth() * scale),
+                (int) (mBitmap.getHeight() * scale),
+                false
+        );
 
         mMaxX = screenSizeX - mBitmap.getWidth();
 
@@ -41,9 +45,8 @@ public class Star {
         if (randomY) {
             mY = random.nextInt(mScreenSizeY);
         } else {
-            mY = 0 - mBitmap.getHeight();
+            mY = -mBitmap.getHeight();
         }
-
     }
 
     public void update() {

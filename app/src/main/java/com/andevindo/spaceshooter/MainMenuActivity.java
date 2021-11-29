@@ -8,7 +8,6 @@ import android.view.WindowManager;
 import android.widget.Button;
 
 public class MainMenuActivity extends AppCompatActivity implements View.OnClickListener {
-
     private Button mPlay, mHighScore, mExit;
 
     @Override
@@ -17,7 +16,10 @@ public class MainMenuActivity extends AppCompatActivity implements View.OnClickL
         setContentView(R.layout.activity_main_menu);
 
         //Membuat tampilan menjadi full screen
-        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        getWindow().setFlags(
+                WindowManager.LayoutParams.FLAG_FULLSCREEN,
+                WindowManager.LayoutParams.FLAG_FULLSCREEN
+        );
 
         //Membuat tampilan selalu menyala jika activity aktif
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);

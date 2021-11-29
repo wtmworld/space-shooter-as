@@ -13,7 +13,6 @@ import android.view.Display;
 import android.view.WindowManager;
 
 public class MainActivity extends AppCompatActivity implements SensorEventListener {
-
     private GameView mGameView;
     private float mXTemp;
 
@@ -21,7 +20,10 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         //Membuat tampilan menjadi full screen
-        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        getWindow().setFlags(
+                WindowManager.LayoutParams.FLAG_FULLSCREEN,
+                WindowManager.LayoutParams.FLAG_FULLSCREEN
+        );
 
         //Membuat tampilan selalu menyala jika activity aktif
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);

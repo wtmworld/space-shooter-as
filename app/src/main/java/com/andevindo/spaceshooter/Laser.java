@@ -13,7 +13,6 @@ import android.graphics.Rect;
  */
 
 public class Laser {
-
     private Bitmap mBitmap;
     private int mX;
     private int mY;
@@ -22,13 +21,24 @@ public class Laser {
     private int mScreenSizeY;
     private boolean mIsEnemy;
 
-    public Laser(Context context, int screenSizeX, int screenSizeY, int spaceShipX, int spaceShipY, Bitmap spaceShip, boolean isEnemy) {
+    public Laser(Context context,
+                 int screenSizeX,
+                 int screenSizeY,
+                 int spaceShipX,
+                 int spaceShipY,
+                 Bitmap spaceShip,
+                 boolean isEnemy) {
         mScreenSizeX = screenSizeX;
         mScreenSizeY = screenSizeY;
         mIsEnemy = isEnemy;
 
         mBitmap = BitmapFactory.decodeResource(context.getResources(), R.drawable.laser_1);
-        mBitmap = Bitmap.createScaledBitmap(mBitmap, mBitmap.getWidth() * 3 / 5, mBitmap.getHeight() * 3 / 5, false);
+        mBitmap = Bitmap.createScaledBitmap(
+                mBitmap,
+                mBitmap.getWidth() * 3 / 5,
+                mBitmap.getHeight() * 3 / 5,
+                false
+        );
 
         mX = spaceShipX + spaceShip.getWidth() / 2 - mBitmap.getWidth() / 2;
         if (mIsEnemy) {
@@ -54,7 +64,6 @@ public class Laser {
             mCollision.right = mX + mBitmap.getWidth();
             mCollision.bottom = mY + mBitmap.getHeight();
         }
-
     }
 
     public boolean isEnemy() {

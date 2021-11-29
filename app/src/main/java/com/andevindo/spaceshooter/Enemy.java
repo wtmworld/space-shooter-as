@@ -18,7 +18,6 @@ import java.util.Random;
  */
 
 public class Enemy {
-
     private Bitmap mBitmap;
     private int mX;
     private int mY;
@@ -40,10 +39,22 @@ public class Enemy {
 
         mHP = 5;
 
-        mEnemies = new int[]{R.drawable.enemy_red_1, R.drawable.enemy_red_2, R.drawable.enemy_red_3};
+        mEnemies = new int[]{
+                R.drawable.enemy_red_1,
+                R.drawable.enemy_red_2,
+                R.drawable.enemy_red_3
+        };
         Random random = new Random();
-        mBitmap = BitmapFactory.decodeResource(context.getResources(), mEnemies[random.nextInt(3)]);
-        mBitmap = Bitmap.createScaledBitmap(mBitmap, mBitmap.getWidth() * 3 / 5, mBitmap.getHeight() * 3 / 5, false);
+        mBitmap = BitmapFactory.decodeResource(
+                context.getResources(),
+                mEnemies[random.nextInt(3)]
+        );
+        mBitmap = Bitmap.createScaledBitmap(
+                mBitmap,
+                mBitmap.getWidth() * 3 / 5,
+                mBitmap.getHeight() * 3 / 5,
+                false
+        );
 
         mSpeed = random.nextInt(3) + 1;
 
@@ -59,7 +70,12 @@ public class Enemy {
             mIsTurnRight = false;
         }
 
-        mCollision = new Rect(mX, mY, mX + mBitmap.getWidth(), mY + mBitmap.getHeight());
+        mCollision = new Rect(
+                mX,
+                mY,
+                mX + mBitmap.getWidth(),
+                mY + mBitmap.getHeight()
+        );
     }
 
     public void update() {

@@ -11,7 +11,6 @@ import android.content.SharedPreferences;
  */
 
 public class SharedPreferencesManager {
-
     private String mName = "SpaceShooter";
     private Context mContext;
 

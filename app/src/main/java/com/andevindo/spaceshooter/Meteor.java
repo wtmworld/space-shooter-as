@@ -18,7 +18,6 @@ import java.util.Random;
  */
 
 public class Meteor {
-
     private Bitmap mBitmap;
     private int mX;
     private int mY;
@@ -52,7 +51,7 @@ public class Meteor {
         mSpeed = random.nextInt(3) + 1;
 
         mX = random.nextInt(mMaxX);
-        mY = 0 - mBitmap.getHeight();
+        mY = -mBitmap.getHeight();
 
         mCollision = new Rect(mX, mY, mX + mBitmap.getWidth(), mY + mBitmap.getHeight());
     }

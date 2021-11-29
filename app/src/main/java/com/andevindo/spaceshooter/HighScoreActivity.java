@@ -8,7 +8,6 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 public class HighScoreActivity extends AppCompatActivity implements View.OnClickListener {
-
     private ImageView mBack;
     private TextView mScore, mMeteor, mEnemy, mNullHighScore;
     private LinearLayout mHighScoreContainer;

@@ -23,10 +23,10 @@ import java.util.Random;
  */
 
 public class GameView extends SurfaceView implements Runnable {
-
     public static int SCORE = 0;
     public static int METEOR_DESTROYED = 0;
     public static int ENEMY_DESTROYED = 0;
+
     private Thread mGameThread;
     private volatile boolean mIsPlaying;
     private Player mPlayer;
@@ -180,10 +180,7 @@ public class GameView extends SurfaceView implements Runnable {
             for (int i = 0; i < random.nextInt(3) + 1; i++) {
                 mStars.add(new Star(getContext(), mScreenSizeX, mScreenSizeY, false));
             }
-
         }
-
-
     }
 
     public void draw() {
@@ -223,25 +220,44 @@ public class GameView extends SurfaceView implements Runnable {
         gameOver.setTextSize(100);
         gameOver.setTextAlign(Paint.Align.CENTER);
         gameOver.setColor(Color.WHITE);
-        mCanvas.drawText("GAME OVER", mScreenSizeX / 2, mScreenSizeY / 2, gameOver);
+        mCanvas.drawText(
+                "GAME OVER",
+                mScreenSizeX / 2,
+                mScreenSizeY / 2,
+                gameOver
+        );
         Paint highScore = new Paint();
         highScore.setTextSize(50);
         highScore.setTextAlign(Paint.Align.CENTER);
         highScore.setColor(Color.WHITE);
         if (mNewHighScore) {
-            mCanvas.drawText("New High Score : " + mSP.getHighScore(), mScreenSizeX / 2, (mScreenSizeY / 2) + 60, highScore);
+            mCanvas.drawText(
+                    "New High Score : " + mSP.getHighScore(),
+                    mScreenSizeX / 2,
+                    (mScreenSizeY / 2) + 60,
+                    highScore
+            );
             Paint enemyDestroyed = new Paint();
             enemyDestroyed.setTextSize(50);
             enemyDestroyed.setTextAlign(Paint.Align.CENTER);
             enemyDestroyed.setColor(Color.WHITE);
-            mCanvas.drawText("Enemy Destroyed : " + mSP.getEnemyDestroyed(), mScreenSizeX / 2, (mScreenSizeY / 2) + 120, enemyDestroyed);
+            mCanvas.drawText(
+                    "Enemy Destroyed : " + mSP.getEnemyDestroyed(),
+                    mScreenSizeX / 2,
+                    (mScreenSizeY / 2) + 120,
+                    enemyDestroyed
+            );
             Paint meteorDestroyed = new Paint();
             meteorDestroyed.setTextSize(50);
             meteorDestroyed.setTextAlign(Paint.Align.CENTER);
             meteorDestroyed.setColor(Color.WHITE);
-            mCanvas.drawText("Meteor Destroyed : " + mSP.getMeteorDestroyed(), mScreenSizeX / 2, (mScreenSizeY / 2) + 180, meteorDestroyed);
+            mCanvas.drawText(
+                    "Meteor Destroyed : " + mSP.getMeteorDestroyed(),
+                    mScreenSizeX / 2,
+                    (mScreenSizeY / 2) + 180,
+                    meteorDestroyed
+            );
         }
-
     }
 
     public void steerLeft(float speed) {

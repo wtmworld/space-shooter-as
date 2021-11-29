@@ -15,7 +15,6 @@ import java.util.ArrayList;
  */
 
 public class Player {
-
     private Bitmap mBitmap;
 
     private int mX;
@@ -41,7 +40,12 @@ public class Player {
 
         mSpeed = 1;
         mBitmap = BitmapFactory.decodeResource(context.getResources(), R.drawable.spaceship_1_blue);
-        mBitmap = Bitmap.createScaledBitmap(mBitmap, mBitmap.getWidth() * 3 / 5, mBitmap.getHeight() * 3 / 5, false);
+        mBitmap = Bitmap.createScaledBitmap(
+                mBitmap,
+                mBitmap.getWidth() * 3 / 5,
+                mBitmap.getHeight() * 3 / 5,
+                false
+        );
 
         mMaxX = screenSizeX - mBitmap.getWidth();
         mMaxY = screenSizeY - mBitmap.getHeight();

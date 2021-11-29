@@ -15,7 +15,6 @@ import android.util.Log;
  */
 
 public class SoundPlayer implements Runnable {
-
     private Thread mSoundThread;
     private volatile boolean mIsPlaying;
     private SoundPool mSoundPool;
