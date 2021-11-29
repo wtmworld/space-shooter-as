@@ -7,13 +7,13 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
 
-public class MainMenuActivity extends AppCompatActivity implements View.OnClickListener {
-    private Button mPlay, mHighScore, mExit;
+public class LevelMenuActivity extends AppCompatActivity implements View.OnClickListener {
+    private Button mEasy, mNormal, mHard;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main_menu);
+        setContentView(R.layout.activity_level_menu);
 
         //Membuat tampilan menjadi full screen
         getWindow().setFlags(
@@ -24,28 +24,34 @@ public class MainMenuActivity extends AppCompatActivity implements View.OnClickL
         //Membuat tampilan selalu menyala jika activity aktif
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
 
-        mPlay = findViewById(R.id.play);
-        mHighScore = findViewById(R.id.high_score);
-        mExit = findViewById(R.id.exit);
+        mEasy = findViewById(R.id.easy);
+        mNormal = findViewById(R.id.normal);
+        mHard = findViewById(R.id.hard);
 
-        mPlay.setOnClickListener(this);
-        mHighScore.setOnClickListener(this);
-        mExit.setOnClickListener(this);
+        mEasy.setOnClickListener(this);
+        mNormal.setOnClickListener(this);
+        mHard.setOnClickListener(this);
     }
 
     @Override
     public void onClick(View v) {
+        int level;
         switch (v.getId()) {
-            case R.id.play:
-                startActivity(new Intent(this, LevelMenuActivity.class));
-                finish();
+            case R.id.easy:
+                level = 1;
                 break;
-            case R.id.high_score:
-                startActivity(new Intent(this, HighScoreActivity.class));
+            case R.id.normal:
+                level = 2;
                 break;
-            case R.id.exit:
-                finish();
+            case R.id.hard:
+                level = 3;
                 break;
+            default:
+                level = 1;
         }
+        Intent intent = new Intent(this, MainActivity.class);
+        intent.putExtra("level", level);
+        startActivity(intent);
+        finish();
     }
 }

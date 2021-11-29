@@ -38,17 +38,27 @@ public class GameView extends SurfaceView implements Runnable {
     private ArrayList<Enemy> mEnemies;
     private ArrayList<Star> mStars;
     private int mScreenSizeX, mScreenSizeY;
+    private int mLevel;
+    private String mLevelText;
     private int mCounter = 0;
     private SoundPlayer mSoundPlayer;
     private SharedPreferencesManager mSP;
     private volatile boolean mIsGameOver;
     private volatile boolean mNewHighScore;
 
-    public GameView(Context context, int screenSizeX, int screenSizeY) {
+    public GameView(Context context, int screenSizeX, int screenSizeY, int level) {
         super(context);
 
         mScreenSizeX = screenSizeX;
         mScreenSizeY = screenSizeY;
+        mLevel = level;
+        if (mLevel == 1) {
+            mLevelText = "EASY";
+        } else if (mLevel == 2) {
+            mLevelText = "NORMAL";
+        } else if (mLevel == 3) {
+            mLevelText = "HARD";
+        }
         mSP = new SharedPreferencesManager(context);
 
         mSoundPlayer = new SoundPlayer(context);
@@ -201,6 +211,7 @@ public class GameView extends SurfaceView implements Runnable {
                 mCanvas.drawBitmap(e.getBitmap(), e.getX(), e.getY(), mPaint);
             }
             drawScore();
+            drawLevel();
             if (mIsGameOver) {
                 drawGameOver();
             }
@@ -213,6 +224,14 @@ public class GameView extends SurfaceView implements Runnable {
         score.setTextSize(30);
         score.setColor(Color.WHITE);
         mCanvas.drawText("Score : " + SCORE, 100, 50, score);
+    }
+
+    void drawLevel() {
+        Paint paint = new Paint();
+        paint.setTextSize(30);
+        paint.setColor(Color.WHITE);
+        paint.setTextAlign(Paint.Align.RIGHT);
+        mCanvas.drawText("Level : " + mLevelText, mCanvas.getWidth() - 100, 50, paint);
     }
 
     void drawGameOver() {

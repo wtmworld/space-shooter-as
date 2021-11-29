@@ -1,6 +1,7 @@
 package com.andevindo.spaceshooter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Point;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
@@ -34,7 +35,11 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
         display.getSize(point);
         Log.d("X and Y size", "X = " + point.x + ", Y = " + point.y);
 
-        mGameView = new GameView(this, point.x, point.y);
+        Intent intent = getIntent();
+        Bundle bundle = intent.getExtras();
+        int level = bundle.getInt("level");
+
+        mGameView = new GameView(this, point.x, point.y, level);
         setContentView(mGameView);
 
         //Sensor Accelerometer digunakan untuk menggerakan player ke kanan dan ke kiri
