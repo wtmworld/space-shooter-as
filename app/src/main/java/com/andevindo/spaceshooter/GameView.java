@@ -95,8 +95,33 @@ public class GameView extends SurfaceView implements Runnable {
     }
 
     public void update() {
+        int fireInterval;
+        int meteorInterval;
+        int enemyInterval;
+        int starInterval;
+        switch (mLevel) {
+            case 1:
+                fireInterval = 6;
+                meteorInterval = 100;
+                enemyInterval = 150;
+                starInterval = 40;
+                break;
+            case 2:
+                fireInterval = 5;
+                meteorInterval = 50;
+                enemyInterval = 100;
+                starInterval = 30;
+                break;
+            default:
+                fireInterval = 4;
+                meteorInterval = 30;
+                enemyInterval = 50;
+                starInterval = 20;
+                break;
+        }
+
         mPlayer.update();
-        if (mCounter % 200 == 0) {
+        if (mCounter % fireInterval == 0) {
             mPlayer.fire();
         }
 
@@ -132,7 +157,7 @@ public class GameView extends SurfaceView implements Runnable {
                 deleting = false;
             }
         }
-        if (mCounter % 1000 == 0) {
+        if (mCounter % meteorInterval == 0) {
             mMeteors.add(new Meteor(getContext(), mScreenSizeX, mScreenSizeY, mSoundPlayer));
         }
 
@@ -165,7 +190,7 @@ public class GameView extends SurfaceView implements Runnable {
                 deleting = false;
             }
         }
-        if (mCounter % 2000 == 0) {
+        if (mCounter % enemyInterval == 0) {
             mEnemies.add(new Enemy(getContext(), mScreenSizeX, mScreenSizeY, mSoundPlayer));
         }
 
@@ -185,7 +210,7 @@ public class GameView extends SurfaceView implements Runnable {
             }
         }
 
-        if (mCounter % 250 == 0) {
+        if (mCounter % starInterval == 0) {
             Random random = new Random();
             for (int i = 0; i < random.nextInt(3) + 1; i++) {
                 mStars.add(new Star(getContext(), mScreenSizeX, mScreenSizeY, false));
@@ -293,11 +318,11 @@ public class GameView extends SurfaceView implements Runnable {
 
     public void control() {
         try {
-            if (mCounter == 10000) {
+            if (mCounter == 1000000) {
                 mCounter = 0;
             }
             mGameThread.sleep(20);
-            mCounter += 20;
+            mCounter += 1;
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
