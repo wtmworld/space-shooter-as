@@ -39,7 +39,10 @@ public class Player {
         mContext = context;
 
         mSpeed = 1;
-        mBitmap = BitmapFactory.decodeResource(context.getResources(), R.drawable.spaceship_1_blue);
+        mBitmap = BitmapFactory.decodeResource(
+                context.getResources(),
+                R.drawable.spaceship_2_white
+        );
         mBitmap = Bitmap.createScaledBitmap(
                 mBitmap,
                 mBitmap.getWidth() * 3 / 5,
